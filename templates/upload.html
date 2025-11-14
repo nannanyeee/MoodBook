@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>도서 표지 업로드</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 30px; }
+        #preview img { max-width: 300px; margin-top: 10px; display: block; margin: auto; }
+        .file-info { margin-top: 10px; color: gray; }
+        pre { background: #f5f5f5; padding: 10px; text-align: left; max-width: 500px; margin: auto; }
+    </style>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}도서 표지 업로드{% endblock %}
+    {% block content %}
+    <div class="card">
+    <div class="card-body text-center">
+        <h4 class="fw-bold mb-3">{{ current_user.username }}님, 도서 표지를 업로드하세요 📖</h4>
+        <form method="POST" enctype="multipart/form-data">
+        <input type="file" id="file-input" name="file" class="form-control mb-3" accept="image/*" required>
+        <div id="preview" class="mb-3 text-center text-muted">미리보기 없음</div>
+        <button type="submit" class="btn btn-primary w-100">업로드</button>
+        </form>
+        <a href="/logout" class="d-block mt-3 text-decoration-none text-secondary">로그아웃</a>
+    </div>
+    </div>
+
+    <script>
+    const fileInput = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+    fileInput.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            preview.innerHTML = `
+            <img src="${reader.result}" class="preview-img" alt="미리보기">
+            <p class="mt-2 text-muted">${file.name} (${(file.size/1024).toFixed(1)} KB)</p>
+            `;
+        };
+        reader.readAsDataURL(file);
+        }
+    });
+    </script>
+    {% endblock %}
+
+</body>
+</html>

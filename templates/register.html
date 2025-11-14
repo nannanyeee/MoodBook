@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}회원가입{% endblock %}
+    {% block content %}
+    <div class="card">
+    <div class="card-body text-center">
+        <h3 class="mb-4 fw-bold">✨ 회원가입</h3>
+        <form method="POST">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="아이디" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">가입하기</button>
+        </form>
+        <p class="mt-3 mb-0">
+        이미 계정이 있으신가요? <a href="/login" class="text-decoration-none fw-semibold">로그인</a>
+        </p>
+    </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

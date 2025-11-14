@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR 결과</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}OCR 결과{% endblock %}
+    {% block content %}
+    <div class="card">
+    <div class="card-body text-center">
+        <h4 class="fw-bold mb-3">📖 OCR 인식 결과</h4>
+        <img src="/static/uploads/{{ image_file }}" class="preview-img mb-3">
+        <div class="text-start bg-light p-3 rounded" style="white-space: pre-wrap;">
+        {{ ocr_text }}
+        </div>
+        <a href="/upload" class="btn btn-primary w-100 mt-3">다시 업로드</a>
+    </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
